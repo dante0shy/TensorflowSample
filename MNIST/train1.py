@@ -45,10 +45,11 @@ def build_model(mnist,in_shape,out_shape):
         tf.trainable_variables()
     )
 
+    # variable_y=inference(x, None,w1,b1,w2,b2)
     variable_y=inference(x, variable_averages,w1,b1,w2,b2)
 
 
-    cross_entopy = -tf.nn.sparse_softmax_cross_entropy_with_logits(
+    cross_entopy = tf.nn.sparse_softmax_cross_entropy_with_logits(
         y, tf.arg_max(y_,1)
     )
 
@@ -73,7 +74,10 @@ def build_model(mnist,in_shape,out_shape):
         loss,global_step=global_step
     )
 
-    train_op = tf.group(train_step, variable_averages_op)
+    # train_op = tf.group(train_step, variable_averages_op)
+    with tf.control_dependencies([train_step,variable_averages_op]):
+        train_op = tf.no_op('train')
+
 
     accuracy = tf.reduce_mean(
         tf.cast(
@@ -86,8 +90,7 @@ def build_model(mnist,in_shape,out_shape):
     )
 
     with tf.Session() as sess:
-        sess.run(tf.initialize_all_variables())
-
+        tf.initialize_all_variables().run()
         validate_feed = {
             x : minst.validation.images,
             y_: minst.validation.labels
@@ -114,7 +117,8 @@ def build_model(mnist,in_shape,out_shape):
                     accuracy,feed_dict=validate_feed
                 )
                 print "Round %d, train loss: %g, val loss: %g, val acc: %g" % (i,loss_m_t,loss_m_v,accuracy_v)
-
+            # print sess.run(w1)
+            # print i
             x_m,y_m = minst.train.next_batch(batch_size)
             sess.run(
                 train_op,feed_dict= {
