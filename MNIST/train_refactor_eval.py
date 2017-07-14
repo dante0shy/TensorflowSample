@@ -27,11 +27,15 @@ def evaluation(mnist,in_shape,out_shape):
         variables_to_restore= variables_averages.variables_to_restore()
 
         saver=tf.train.Saver(variables_to_restore)
+        ckpt_m=None
         while True:
             with tf.Session() as sess:
                 ckpt=tf.train.get_checkpoint_state(
                     "./model_re"
                 )
+                if(ckpt_m==ckpt):
+                    print("train finished")
+                    return
                 if ckpt and ckpt.model_checkpoint_path:
                     saver.restore(sess,ckpt.model_checkpoint_path)
                     global_step= ckpt.model_checkpoint_path.split('/')[-1].split('-')[-1]
@@ -42,6 +46,7 @@ def evaluation(mnist,in_shape,out_shape):
                     print "no ckpt"
                     return
                 time.sleep(eval_secs)
+                ckpt_m=ckpt
 
 
 def main(argv=None):

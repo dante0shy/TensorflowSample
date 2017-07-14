@@ -117,7 +117,7 @@ def build_model(mnist,in_shape,out_shape):
                 tf.train.Saver().save(sess,"./model_re/model.ckpt",global_step=global_step)
         # print sess.run(w1)
         # print sess.run(w2)
-
+        tf.train.Saver().save(sess, "./model_re/model.ckpt", global_step=global_step)
 
 def main(argv=None):
     minst = input_data.read_data_sets("./train", one_hot=True)
