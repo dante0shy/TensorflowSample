@@ -132,8 +132,7 @@ def build_model(mnist,in_shape,out_shape):
         )
 
         print "finial round %d, acc: %g"%(training_step,test_acc)
-
-
+        tf.train.Saver().save(sess,"./model/model.ckpt")
         # print sess.run(w1)
         # print sess.run(w2)
 
