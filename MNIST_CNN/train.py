@@ -136,7 +136,7 @@ def build_model(mnist,in_shape,out_shape):
     # variable_y=inference(x, None,w1,b1,w2,b2)
 
     cross_entopy = tf.nn.sparse_softmax_cross_entropy_with_logits(
-        y, tf.arg_max(y_,1)
+        labels = y, logits = y_
     )
 
     cross_entopy_mean= tf.reduce_mean(cross_entopy)
