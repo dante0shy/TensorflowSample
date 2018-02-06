@@ -1,0 +1,5 @@
+model_checkpoint_path: "/home/xinmatrix/TwoTB/PycharmProjects/tensorflow_self_learning/TensorflowSample/lstm/runs/checkpoints/model-3907"
+all_model_checkpoint_paths: "/home/xinmatrix/TwoTB/PycharmProjects/tensorflow_self_learning/TensorflowSample/lstm/runs/checkpoints/model-127"
+all_model_checkpoint_paths: "/home/xinmatrix/TwoTB/PycharmProjects/tensorflow_self_learning/TensorflowSample/lstm/runs/checkpoints/model-1387"
+all_model_checkpoint_paths: "/home/xinmatrix/TwoTB/PycharmProjects/tensorflow_self_learning/TensorflowSample/lstm/runs/checkpoints/model-2647"
+all_model_checkpoint_paths: "/home/xinmatrix/TwoTB/PycharmProjects/tensorflow_self_learning/TensorflowSample/lstm/runs/checkpoints/model-3907"

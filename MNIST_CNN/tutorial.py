@@ -71,6 +71,8 @@ def run_model():
                 correct_prediction = tf.equal(tf.argmax(y, 1), tf.argmax(y_, 1))
                 accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
                 print 'acc  : {}'.format(accuracy.eval(feed_dict={x: mnist.test.images, y_: mnist.test.labels,keep_prob: 1.}))
+                tf.train.Saver().save(sess, "./model/ckpt", global_step=i)
+        tf.train.Saver().save(sess, "./model/ckpt", global_step=i)
         correct_prediction = tf.equal(tf.argmax(y, 1), tf.argmax(y_, 1))
         accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
         print 'acc  : {}'.format(accuracy.eval(feed_dict={x: mnist.test.images, y_: mnist.test.labels,keep_prob: 1.}))
